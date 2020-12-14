@@ -28,12 +28,20 @@ class LaminasTranslatorCallable implements TranslatorInterface
 
     /**
      * @inheritDoc
+     *
+     * @throws TranslatorRuntimeException when Laminas Translator does
      */
-    public function __invoke( string $word, string $domain = null)
+    public function __invoke( $word, string $domain = null)
     {
-        return (empty($domain))
-        ? $this->translator->translate($word)
-        : $this->translator->translate($word, $domain);
+        try {
+            return (empty($domain))
+            ? $this->translator->translate($word)
+            : $this->translator->translate($word, $domain);
+        }
+        catch (\Throwable $e )
+        {
+            throw new TranslatorRuntimeException("Caught exception in Laminas Translator", 1, $e);
+        }
     }
 
 }
