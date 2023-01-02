@@ -7,6 +7,11 @@ class LaminasTranslatorCallable implements TranslatorInterface
 {
 
     /**
+     * @var LaminasTranslator
+     */
+    public $translator;
+
+    /**
      * @param \Laminas\I18n\Translator\TranslatorInterface $translator Laminas Translator
      */
     public function __construct(LaminasTranslator $translator)
