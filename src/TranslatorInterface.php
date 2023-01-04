@@ -11,5 +11,5 @@ interface TranslatorInterface
      *
      * @throws TranslatorExceptionInterface
      */
-    public function __invoke( $word);
+    public function __invoke( $word, string $domain = null);
 }
