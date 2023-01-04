@@ -1,7 +1,7 @@
 <?php
 namespace Germania\Translator;
 
-interface TranslatorExceptionInterface
+interface TranslatorExceptionInterface extends \Throwable
 {
     
 }

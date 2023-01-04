@@ -73,7 +73,7 @@ class ArrayKeyTranslator implements TranslatorInterface {
      * @throws \InvalidArgumentException|TranslatorExceptionInterface if $variable is neither string, nor array, nor ArrayAccess
      * @throws \RuntimeException|TranslatorExceptionInterface if $variable array does not contain neither client nor default language keys
      */
-    public function __invoke( $variable)
+    public function __invoke( $variable, string $domain = null)
     {
         if (is_string($variable)):
             return $variable;
@@ -89,7 +89,8 @@ class ArrayKeyTranslator implements TranslatorInterface {
         elseif (isset($variable[ $this->default_lang ])):
             return $variable[ $this->default_lang ];
         else:
-            throw new TranslatorRuntimeException("Could not find neither '$client_lang' nor '$default_lang' in variable.");
+            $msg = sprintf("Could not find neither '%s' nor '%s' in variable.", $this->client_lang, $this->default_lang);
+            throw new TranslatorRuntimeException($msg);
         endif;
 
     }
